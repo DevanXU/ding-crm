@@ -11,22 +11,29 @@ const Item = Popover.Item;
 const myImg = src => <img src={`https://gw.alipayobjects.com/zos/rmsportal/${src}.svg`} className="am-icon am-icon-xs" alt="" />;
 
 class Home extends Component {
-    state = {
-        visible: true,
-        //selected: '',
-    };
 
     constructor(props) { super(props, logic);        
         this.handleChange = this.handleChange.bind(this);
+        const {state : {
+            visible,
+            menu,
+            tabbarIndex,
+            badge,
+            //selected: '',
+        }} = this;
     }
 
     onSelect = (opt) => {
-        //console.log(opt.props.value);
+        console.log('onSelect', opt.props.value);
         this.setState({
             visible: false,
             //selected: opt.props.value,
         });
     };
+
+    onLeftClick = () => {
+        console.log('onLeftClick');
+    }
     
     handleVisibleChange = (visible) => {
         console.log('handleVisibleChange ...');
@@ -43,16 +50,17 @@ class Home extends Component {
 
     render() {
         //const { state: { menu, tabbarIndex, badge, },  } = this;
-        //const activeIndex=activeTabbar( menu );
+        const activeIndex=activeTabbar( this.state.menu );
         
-        //if (tabbarIndex != activeIndex  ){ // 对比url索引和当前选中的值,如不对应则纠正.
-        //    this.dispatch('setTabbarIndex',activeIndex);
-        //}
+        if (this.state.tabbarIndex != activeIndex  ){ // 对比url索引和当前选中的值,如不对应则纠正.
+            this.dispatch('setTabbarIndex',activeIndex);
+        }
 
         return (
             <div className="home">
                 <NavBar
                     mode="light"
+                    onLeftClick={this.onLeftClick}
                     rightContent={
                     <Popover mask
                         overlayClassName="fortest"
@@ -60,8 +68,8 @@ class Home extends Component {
                         visible={this.state.visible}
                         overlay={[
                             (<Item key="4" value="scan" icon={myImg('tOtXhkIWzwotgGSeptou')} data-seed="logId">Scan</Item>),
-                            (<Item key="5" value="special" icon={myImg('PKAgAqZWJVNwKsAJSmXd')} style={{ whiteSpace: 'nowrap' }}>My Qrcode</Item>),
-                            (<Item key="6" value="button ct" icon={myImg('uQIYTFeRrjPELImDRrPt')}>
+                            (<Item key="5" value="qrcode" icon={myImg('PKAgAqZWJVNwKsAJSmXd')} style={{ whiteSpace: 'nowrap' }}>My Qrcode</Item>),
+                            (<Item key="6" value="help" icon={myImg('uQIYTFeRrjPELImDRrPt')}>
                                 <span style={{ marginRight: 5 }}>Help</span>
                             </Item>),
                         ]}
@@ -91,7 +99,7 @@ class Home extends Component {
                 {/*中间嵌套的页面*/}
                 {this.props.children}
 
-                {/*<TabBar menu={menu} tabbarIndex={tabbarIndex} badge={badge} onChange={this.handleChange} />*/}
+                {<TabBar menu={this.state.menu} tabbarIndex={this.state.tabbarIndex} badge={this.state.badge} onChange={this.handleChange} />}
             </div>
         );
     }
