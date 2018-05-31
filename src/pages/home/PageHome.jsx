@@ -6,6 +6,8 @@ import { Component, LogicRender } from 'refast';
 import TabBar, { activeTabbar } from 'components/card-tabbar';
 import { NavBar, Popover, Icon } from 'antd-mobile';
 
+import MainPage from './MainPage';
+
 const Item = Popover.Item;
 
 const myImg = src => <img src={`https://gw.alipayobjects.com/zos/rmsportal/${src}.svg`} className="am-icon am-icon-xs" alt="" />;
@@ -60,7 +62,6 @@ class Home extends Component {
             <div className="home">
                 <NavBar
                     mode="light"
-                    onLeftClick={this.onLeftClick}
                     rightContent={
                     <Popover mask
                         overlayClassName="fortest"
@@ -96,9 +97,11 @@ class Home extends Component {
                     NavBar
                 </NavBar>
 
+                <MainPage />
+
                 {/*中间嵌套的页面*/}
                 {this.props.children}
-
+                
                 {<TabBar menu={this.state.menu} tabbarIndex={this.state.tabbarIndex} badge={this.state.badge} onChange={this.handleChange} />}
             </div>
         );
