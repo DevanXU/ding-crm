@@ -1,11 +1,11 @@
 import { Route } from 'react-keeper'
-import Page from './PageHome';
+import Home from './PageHome';
 
 export default {
-    page: Page,
+    page: Home,
     route: () => (
         <div>
-            <Route index component={Page} path= '/home' >
+            <Route index component={Home} path='/home' >
 
             </Route>
         </div>)
