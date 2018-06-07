@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { HashRouter, Route } from 'react-keeper'
 
 import PageHome from 'pages/home/';
+import { BrowserRouter } from 'react-keeper';
 
 const rootRoute =
-    <HashRouter>
+    <BrowserRouter>
         <PageHome.route />
-    </HashRouter>;
+    </BrowserRouter>;
 
-ReactDOM.render( rootRoute, document.getElementById('App') );
+ReactDOM.render(rootRoute, document.getElementById('App'));
