@@ -1,6 +1,7 @@
 import React from 'react'
 import { Route, Link } from 'react-keeper'
 import { Grid } from 'antd-mobile'
+import CustomerList from './customer'
 import './MainPage.css'
 
 const data = Array.from(new Array(9)).map((_val, i) => ({
@@ -28,20 +29,6 @@ const carouseldata = [
     }
 ]
 
-const Office = ({ match }) => {
-    console.log('Office ...', { match })
-    return (
-        < h3 > Office</h3 >
-    )
-}
-
-const Outing = ({ match }) => {
-    console.log('Outing ...', { match })
-    return (
-        < h3 > Outing</h3 >
-    )
-}
-
 class MainPage extends React.Component {
     handleClick = (e) => {
         console.log('onclick: ', e);
@@ -66,6 +53,7 @@ class MainPage extends React.Component {
                                     <span><a href={dataItem.link}>{dataItem.text}</a></span>
                                 </div>
                             </div>
+                            <Link to='/customer'>CustomerList</Link>
                         </div>
                     )} />
 

@@ -4,11 +4,9 @@ import { Control, Route } from 'react-keeper';
 import { Component, LogicRender } from 'refast';
 
 import TabBar, { activeTabbar } from 'components/card-tabbar';
-import { NavBar, Popover, Icon } from 'antd-mobile';
 
 import MainPage from './MainPage';
 import DingNavBar from './ding-navbar';
-
 
 class Home extends Component {
     constructor(props) {
