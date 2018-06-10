@@ -1,18 +1,32 @@
-require('./PageHome.less');
-import logic from './PageLogic';
-import { Control, Route } from 'react-keeper';
-import { Component, LogicRender } from 'refast';
+require('./PageHome.less')
+import logic from './PageLogic'
+import { Control, Route } from 'react-keeper'
+import { Component, LogicRender } from 'refast'
+import { Popover } from 'antd-mobile'
 
 import TabBar, { activeTabbar } from 'components/card-tabbar';
 
 import MainPage from './MainPage';
 import DingNavBar from './ding-navbar';
 
+const Item = Popover.Item;
+
+const myImg = src => <img src={`https://gw.alipayobjects.com/zos/rmsportal/${src}.svg`} className="am-icon am-icon-xs" alt="" />;
+
+const NavBarItems = [
+    (<Item key="scan" value="scan" icon={myImg('tOtXhkIWzwotgGSeptou')} data-seed="logId">Scan</Item>),
+    (<Item key="qrcode" value="qrcode" icon={myImg('PKAgAqZWJVNwKsAJSmXd')} style={{ whiteSpace: 'nowrap' }}>My Qrcode</Item>),
+    (<Item key="help" value="help" icon={myImg('uQIYTFeRrjPELImDRrPt')}>
+        <span style={{ marginRight: 5 }}>Help</span>
+    </Item>),
+]
+
 class Home extends Component {
     constructor(props) {
         super(props, logic);
         this.handleChange = this.handleChange.bind(this);
         const { state: { visible, menu, tabbarIndex, badge } } = this;
+
     }
 
     onLeftClick = () => {
@@ -34,7 +48,9 @@ class Home extends Component {
 
         return (
             <div className="home">
-                <DingNavBar onSelect={this.onSelect}
+                <DingNavBar
+                    menu={NavBarItems}
+                    onSelect={this.onSelect}
                     onLeftClick={this.onLeftClick}
                     handleVisibleChange={this.handleVisibleChange}>CRM
                 </DingNavBar>

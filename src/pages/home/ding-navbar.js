@@ -1,11 +1,6 @@
 import React from "react"
 import { NavBar, Icon, Popover } from 'antd-mobile'
 
-const Item = Popover.Item;
-
-const myImg = src => <img src={`https://gw.alipayobjects.com/zos/rmsportal/${src}.svg`} className="am-icon am-icon-xs" alt="" />;
-
-
 export default class DingNavBar extends React.Component {
     constructor(props) {
         super(props);
@@ -36,13 +31,7 @@ export default class DingNavBar extends React.Component {
                             overlayClassName="fortest"
                             overlayStyle={{ color: 'currentColor' }}
                             visible={this.state.visible}
-                            overlay={[
-                                (<Item key="4" value="scan" icon={myImg('tOtXhkIWzwotgGSeptou')} data-seed="logId">Scan</Item>),
-                                (<Item key="5" value="qrcode" icon={myImg('PKAgAqZWJVNwKsAJSmXd')} style={{ whiteSpace: 'nowrap' }}>My Qrcode</Item>),
-                                (<Item key="6" value="help" icon={myImg('uQIYTFeRrjPELImDRrPt')}>
-                                    <span style={{ marginRight: 5 }}>Help</span>
-                                </Item>),
-                            ]}
+                            overlay={this.props.menu}
                             align={{
                                 overflow: { adjustY: 0, adjustX: 0 },
                                 offset: [-10, 0],
