@@ -1,13 +1,16 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import { List } from 'antd-mobile';
 import TabBar from 'components/card-tabbar'
 
 import DingNavBar from './ding-navbar'
+import customerReducer from '../../reducers/customerReducer'
+import { setName } from '../../actions/customerAction'
 
 const Item = List.Item;
 const Brief = Item.Brief;
 
-export default class CustomerList extends React.Component {
+class CustomerList extends React.Component {
     state = {
         disabled: false,
     }
@@ -17,6 +20,7 @@ export default class CustomerList extends React.Component {
             <div>
                 <div>
                     <DingNavBar />
+                    <button onClick={this.props.SetCustomerName('Devan')}>Trigger</button>
                 </div>
                 <div>
                     <List renderHeader={() => 'Basic Style'} className="my-list">
@@ -94,3 +98,17 @@ export default class CustomerList extends React.Component {
             </div >)
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        customer: state.customerReducer
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        SetCustomerName: (name) => dispatch(setname(name))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CustomerList)
