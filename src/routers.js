@@ -3,16 +3,16 @@ import ReactDOM from 'react-dom';
 
 import PageHome from 'pages/home/';
 import { BrowserRouter } from 'react-keeper';
-import { Provider } from 'redux'
+import { Provider } from 'react-redux'
 import store from './store'
 
 const rootRoute =
     <BrowserRouter>
-        <PageHome.route />
+        <Provider store={store}>
+            <PageHome.route />
+        </Provider>
     </BrowserRouter>;
 
 ReactDOM.render(
-    <Provider store={store}>
-        rootRoute
-    </Provider>,
+    rootRoute,
     document.getElementById('App'));
