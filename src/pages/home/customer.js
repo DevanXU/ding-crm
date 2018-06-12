@@ -20,7 +20,7 @@ class CustomerList extends React.Component {
             <div>
                 <div>
                     <DingNavBar />
-                    <button >Trigger</button>
+                    <button onClick={() => this.props.setName('Devan')}>Trigger</button>
                 </div>
                 <div>
                     <List renderHeader={() => 'Basic Style'} className="my-list">
@@ -107,7 +107,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        SetCustomerName: (name) => dispatch(setName(name))
+        setName: (name) => dispatch(setName(name))
     }
 }
 

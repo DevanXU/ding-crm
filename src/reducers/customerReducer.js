@@ -6,7 +6,7 @@ const customerReducer = (state = {
         case 'SET_NAME':
             state = {
                 ...state,
-                name: state.name
+                name: action.payload
             }
             break
         default:
